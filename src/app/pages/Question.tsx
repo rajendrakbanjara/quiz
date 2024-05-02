@@ -1,30 +1,29 @@
 import { useState } from "react";
-
+import ListItem from "./ListItem";
 interface ChildProps {
-  chooseSubject: (subject: any) => void;
-  subject:any;
+  showResult: (marks: number) => void;
+  subject: any;
 }
 
-const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
-    
+const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
   var questionSets = [
     //html question
-   [
+    [
       {
         qution: "HTML stand for?",
         op1: "HighText Machine Language",
         op2: "HyperText and links Markup Language",
         op3: "HyperText Markup Language",
         op4: "None of these",
-        correctAns: "HyperText Markup Language",
+        correctAns: 3,
       },
       {
         qution: "How to create a hyperlink in HTML",
-        op1: "<a href = \"/www.example.com\">example</a>",
-        op2: "<a url = \"javatpoint\"> example< /a>",
-        op3: "<a link = \"www.javatpoint.com\">example</a>",
+        op1: '<a href = "/www.example.com">example</a>',
+        op2: '<a url = "javatpoint"> example< /a>',
+        op3: '<a link = "www.javatpoint.com">example</a>',
         op4: "<a> www.javatpoint.com example</a>",
-        correctAns: "<a href = \"/www.example.com\">example</a>",
+        correctAns: 1,
       },
       {
         qution: "How to create an ordered list",
@@ -32,23 +31,23 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op2: "<ol>",
         op3: "<li>",
         op4: "<i>",
-        correctAns: "<ol>",
+        correctAns: 2,
       },
       {
         qution: "How to insert an image in HTML?",
-        op1: "<img href = \"jtp.png\" />",
-        op2: "<img url = \"jtp.png\" />",
-        op3: "<img link = \"jtp.png\" />",
-        op4: "<img src = \"jtp.png\" />",
-        correctAns: "<img src = \"jtp.png\" />",
+        op1: '<img href = "jtp.png" />',
+        op2: '<img url = "jtp.png" />',
+        op3: '<img link = "jtp.png" />',
+        op4: '<img src = "jtp.png" />',
+        correctAns: 4,
       },
       {
         qution: "How to add a background color in HTML?",
-        op1: "<marquee bg color: \"red\">",
-        op2: "<marquee bg-color = \"red\">",
-        op3: "<marquee bgcolor = \"red\">",
-        op4: "<marquee color = \"red\">",
-        correctAns: "<marquee bgcolor = \"red\">",
+        op1: '<marquee bg color: "red">',
+        op2: '<marquee bg-color = "red">',
+        op3: '<marquee bgcolor = "red">',
+        op4: '<marquee color = "red">',
+        correctAns: 3,
       },
       {
         qution: " <input> is -",
@@ -56,15 +55,15 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op2: "an empty tag.",
         op3: "All of the above",
         op4: "None of the above",
-        correctAns: "an empty tag",
+        correctAns: 2,
       },
       {
         qution: "How to create a checkbox in HTML?",
-        op1: "<input type = \"checkbox\">",
-        op2: "<input type = \"button\">",
+        op1: '<input type = "checkbox">',
+        op2: '<input type = "button">',
         op3: "<checkbox>",
-        op4: "<input type = \"check\">",
-        correctAns: "<input type = \"checkbox\">",
+        op4: '<input type = "check">',
+        correctAns: 1,
       },
       {
         qution: "HTML tags are enclosed in-",
@@ -72,7 +71,7 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op2: "{ and }",
         op3: "! and ?",
         op4: "< and >",
-        correctAns: "< and >",
+        correctAns: 4,
       },
       {
         qution: "The <hr> tag is used for -",
@@ -80,7 +79,7 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op2: "vertical ruler",
         op3: "new paragraph",
         op4: "horizontal ruler",
-        correctAns: "horizontal ruler",
+        correctAns: 4,
       },
       {
         qution: "The tags in HTML are -",
@@ -88,7 +87,7 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op2: "in upper case",
         op3: "not case sensitive",
         op4: "in lowercase",
-        correctAns: "not case sensitive",
+        correctAns: 3,
       },
     ],
     //css question
@@ -339,74 +338,99 @@ const Question: React.FC<ChildProps> = ({chooseSubject, subject}) => {
         op4: "Dynamic function",
         correctAns: "Procedures",
       },
-    ]
+    ],
   ];
 
+  var [questions, setQuestions] = useState(questionSets[subject - 1]);
+  var [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  var [correctAnswers, setCorrectAnswers] = useState(0);
+  var [choosenOption, setChoosenOption] = useState(0);
+  var changeOption = (option: number) => {
+    setChoosenOption(option);
+  };
 
-    var [questions, setQuestions] = useState(questionSets[subject-1]);
-    var [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    var [correctAnswers, setCorrectAnswers] = useState(0);
-    var [choosenOption, setChoosenOption] = useState(-1);
-
-    
   return (
-        <div className="flex mt-20 justify-between ">
-          {/* left container */}
-          <div className="pr-14">
-            <div className="mr-20">
-              <p className="text-lg italic text-slate-600 dark:text-slate-400 font-sans mb-5">
-                Question {currentQuestionIndex+1} of {questions.length}
-              </p>
-              <p className="dark:text-white text-slate-600 font-semibold text-4xl">
-                {questions[currentQuestionIndex].qution}
-              </p>
+    <div className="flex mt-20 justify-between ">
+      {/* left container */}
+      <div className="pr-14">
+        <div className="mr-20">
+          <p className="text-lg italic text-slate-600 dark:text-slate-400 font-sans mb-5">
+            Question {currentQuestionIndex + 1} of {questions.length}
+          </p>
+          <p className="dark:text-white text-slate-600 font-semibold text-4xl">
+            {questions[currentQuestionIndex].qution}
+          </p>
+        </div>
+        <div>
+          <input type="range" />
+        </div>
+      </div>
+      {/* Right container */}
+      <div>
+        <div className="space-y-6 ">
+          <ul className="space-y-4">
+            <div className="hover:border-purple-600 hover:border-4">
+              <ListItem
+                index={1}
+                lable={"A"}
+                value={questions[currentQuestionIndex].op1}
+                isSelected={choosenOption == 1}
+                changeOption={changeOption}
+              />
             </div>
-            <div>
-              <input type="range" />
+            <div className="hover:border-purple-600 hover:border-4">
+              <ListItem
+                index={2}
+                lable={"B"}
+                value={questions[currentQuestionIndex].op2}
+                isSelected={choosenOption == 2}
+                changeOption={changeOption}
+              />
             </div>
-          </div>
-          {/* Right container */}
+            <div className="hover:border-purple-600 hover:border-4">
+              <ListItem
+                index={3}
+                lable={"C"}
+                value={questions[currentQuestionIndex].op3}
+                isSelected={choosenOption == 3}
+                changeOption={changeOption}
+              />
+            </div>
+            <div className="hover:border-purple-600 hover:border-4">
+              <ListItem
+                index={4}
+                lable={"D"}
+                value={questions[currentQuestionIndex].op4}
+                isSelected={choosenOption == 4}
+                changeOption={changeOption}
+              />
+            </div>
+          </ul>
           <div>
-            <div className="space-y-6 ">
-              <ul className="space-y-4">
-                <div className="hover:border-purple-600 hover:border-4">
-                <li className="flex items-center font-bold text-slate-600 dark:text-white bg-slate-50 dark:bg-slate-600 p-2 w-[36rem] rounded-2xl text-2xl ">
-                  <div className="bg-slate-200 text-slate-600 px-5 py-3 ml-2 my-2 rounded-md  mr-7 text-2xl">
-                    A
-                  </div>
-                  {questions[currentQuestionIndex].op1}
-                </li></div>
-                <div>
-                <li className="flex items-center font-bold text-slate-600 dark:text-white bg-slate-50 dark:bg-slate-600 p-2 w-[36rem] rounded-2xl text-2xl hover:border-purple-600 hover:border-4">
-                  <div className="bg-slate-200 text-slate-600 px-5 py-3 ml-2 my-2 rounded-md  mr-7 text-2xl">
-                    B
-                  </div>
-                  {questions[currentQuestionIndex].op2}
-                </li></div>
-                <li className="flex items-center font-bold text-slate-600 dark:text-white bg-slate-50 dark:bg-slate-600 p-2 w-[36rem] rounded-2xl text-2xl hover:border-purple-600 hover:border-4">
-                  <div className="bg-slate-200 text-slate-600 px-5 py-3 ml-2 my-2 rounded-md  mr-7 text-2xl">
-                    C
-                  </div>
-                  {questions[currentQuestionIndex].op3}
-                </li>
-                <li className="flex items-center font-bold text-slate-600 dark:text-white bg-slate-50 dark:bg-slate-600 p-2 w-[36rem] rounded-2xl text-2xl hover:border-purple-600 hover:border-4">
-                  <div className="bg-slate-200 text-slate-600 px-5 py-3 ml-2 my-2 rounded-md  mr-7 text-2xl">
-                    D
-                  </div>
-                  {questions[currentQuestionIndex].op4}
-                </li>
-              </ul>
-              <div>
-                <button
-                  type="submit"
-                  className="flex items-center font-bold text-white p-2 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
-                >
-                  Submit answer
-                </button>
-              </div>
-            </div>
+            <button
+              type="submit"
+              className="flex items-center font-bold text-white p-2 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
+              onClick={function () {
+                if (
+                  questions[currentQuestionIndex].correctAns == choosenOption
+                ) {
+                  setCorrectAnswers(correctAnswers + 1);
+                }
+
+                if (currentQuestionIndex < 9) {
+                  setCurrentQuestionIndex(currentQuestionIndex + 1);
+                  setChoosenOption(0);
+                } else {
+                  showResult(correctAnswers);
+                }
+              }}
+            >
+              Submit answer
+            </button>
           </div>
         </div>
+      </div>
+    </div>
   );
 };
 

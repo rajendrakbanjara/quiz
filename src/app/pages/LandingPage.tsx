@@ -7,15 +7,17 @@ import Question from "./Question";
 import Result from "./Result";
 
 const LandingPage = () => {
-
-
   var chooseSubject = (subject: any) => setSelectedSubject(subject);
-
+  var showResult = (marks: number) => {
+    setMarks(marks);
+    chooseSubject(-1);
+  };
   // theme change
   const [theme, setTheme] = useState("light");
   const [btnColor, setBtnColor] = useState("darkBlue");
 
   const [selectedSubject, setSelectedSubject] = useState(0);
+  const [marks, setMarks] = useState(0);
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -41,13 +43,16 @@ const LandingPage = () => {
         </div>
 
         {/* If subject is not selected */}
-        {selectedSubject == 0 && <Subjects chooseSubject={chooseSubject}/>}
+        {selectedSubject == 0 && <Subjects chooseSubject={chooseSubject} />}
 
         {/* If subject is selected */}
-        {(selectedSubject > 0 && selectedSubject < 5) && <Question subject={selectedSubject} chooseSubject={chooseSubject}/>}
-        
-        {selectedSubject == -1 && <Result chooseSubject={chooseSubject}/>}
-        
+        {selectedSubject > 0 && selectedSubject < 5 && (
+          <Question subject={selectedSubject} showResult={showResult} />
+        )}
+
+        {selectedSubject == -1 && (
+          <Result marks={marks} chooseSubject={chooseSubject} />
+        )}
       </div>
     </div>
   );

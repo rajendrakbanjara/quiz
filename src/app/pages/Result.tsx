@@ -2,8 +2,9 @@
 import { IoAccessibilityOutline } from "react-icons/io5";
 interface ChildProps {
   chooseSubject: (subject: any) => void;
+  marks: number;
 }
-const Result: React.FC<ChildProps> = ({chooseSubject})=> {
+const Result: React.FC<ChildProps> = ({chooseSubject, marks})=> {
   return (
     <div className="flex mt-20 justify-between ">
       {/* left container */}
@@ -37,7 +38,7 @@ const Result: React.FC<ChildProps> = ({chooseSubject})=> {
                 </div>
               </div>
               <div className="text-9xl font-bold font-sans flex justify-center">
-                <span>6</span>
+                <span>{marks}</span>
               </div>
               <div className="flex justify-center">
                 <span>out of 10</span>
