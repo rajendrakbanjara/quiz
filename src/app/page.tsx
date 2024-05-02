@@ -1,13 +1,12 @@
-"use client"
-import LandingPage from "./components/LandingPage";
-import Question from "./components/Question";
-import Result from "./components/Result"
+"use client";
+import LandingPage from "./pages/LandingPage";
+import Question from "./pages/Question";
+import Result from "./pages/Result";
 export default function Home() {
   return (
     <>
-      <LandingPage/>
-      {/* <Question/> */}
-      {/* <Result/> */}
+      <LandingPage />
+    
     </>
   );
 }
