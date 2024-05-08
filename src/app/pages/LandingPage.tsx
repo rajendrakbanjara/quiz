@@ -31,8 +31,8 @@ const LandingPage = () => {
     setBtnColor(btnColor == "darkBlue" ? "white" : "darkBlue");
   };
   return (
-    <div className="flex justify-center h-screen pt-11 dark:bg-slate-700">
-      <div className="dark:bg-slate-700 w-[80%] mt-10">
+    <div className="flex justify-center h-screen pt-[2rem]   dark:bg-slate-700">
+      <div className="dark:bg-slate-700 lg:w-[80%] w-[90%] lg:mt-10">
         {/* mode changing section */}
         <div className="">
           <div className="flex float-end space-x-3 items-center">

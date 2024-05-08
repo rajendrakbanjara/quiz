@@ -6,26 +6,26 @@ interface ChildProps {
 }
 const Result: React.FC<ChildProps> = ({chooseSubject, marks})=> {
   return (
-    <div className="flex mt-20 justify-between ">
+    <div className="lg:flex lg:mt-20 mt-12 lg:justify-between ">
       {/* left container */}
-      <div className="pr-14">
-        <div className="mr-20">
+      <div className="lg:pr-14">
+        <div className="lg:mr-20">
           {/* <p className="text-lg italic text-slate-400 font-sans mb-5">
            
           </p> */}
-          <p className="dark:text-white text-slate-600 font-sans font-thin text-7xl">
+          <p className="dark:text-white text-slate-600 font-sans font-thin lg:text-7xl text-4xl">
             Quiz Completed
           </p>
-          <p className="dark:text-white text-slate-600 font-sans font-semibold text-6xl">
+          <p className="dark:text-white text-slate-600 font-sans font-semibold lg:text-6xl text-3xl">
             You Scored...
           </p>
         </div>
       </div>
       {/* Right container */}
       <div>
-        <div className="space-y-6">
+        <div className="lg:space-y-6 space-y-4 lg:mt-0 mt-3">
           <ul className="space-y-4">
-            <li className="dark:text-white text-slate-600 bg-slate-100 dark:bg-slate-600 p-14 w-[36rem] h-[25rem] rounded-2xl space-y-10">
+            <li className="dark:text-white text-slate-600 bg-slate-100 dark:bg-slate-600 p-14 lg:w-[36rem] lg:h-[25rem] rounded-2xl lg:space-y-10">
               <div className="flex justify-center">
                 <div className="flex items-center space-x-5">
                   <div className="bg-purple-100 p-2 rounded-md inline-block">
@@ -47,7 +47,7 @@ const Result: React.FC<ChildProps> = ({chooseSubject, marks})=> {
           <div>
             <button
               type="submit"
-              className="flex items-center font-bold text-white p-4 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
+              className="flex items-center font-bold text-white p-4 lg:w-[36rem] w-full rounded-2xl text-2xl justify-center py-7 bg-purple-600"
               onClick={()=>chooseSubject(0)}
             >
               Play again

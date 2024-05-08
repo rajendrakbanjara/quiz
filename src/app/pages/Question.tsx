@@ -354,18 +354,18 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
     require("bootstrap/dist/js/bootstrap.js");
   }, []);
   return (
-    <div className="flex mt-20 justify-between">
+    <div className="Question lg:flex lg:mt-20 justify-between">
       {/* left container */}
-      <div className="flex flex-col justify-between w-[32rem]">
-        <div className="mr-20">
-          <p className="text-lg italic text-slate-600 dark:text-slate-400 font-sans mb-5">
+      <div className="flex flex-col justify-between lg:w-[32rem]">
+        <div className="OueNum mr-20">
+          <p className="text-lg italic text-slate-600 dark:text-slate-400 font-sans lg:mb-5">
             Question {currentQuestionIndex + 1} of {questions.length}
           </p>
-          <p className="dark:text-white text-slate-600 font-semibold text-4xl">
+          <p className="dark:text-white text-slate-600 font-semibold lg:text-4xl text-2xl mt-3">
             {questions[currentQuestionIndex].qution}
           </p>
         </div>
-        <div className="progressiveBar mb-6">
+        <div className="progressiveBar mb-6 lg:mt-0 mt-2.5">
           <div
             className="progress"
             role="progressbar"
@@ -425,7 +425,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
           <div>
             <button
               type="submit"
-              className="flex items-center font-bold text-white p-4 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
+              className="flex items-center font-bold text-white lg:p-4 py-3.5 lg:w-[36rem] w-full rounded-2xl lg:text-2xl justify-center lg:py-7 bg-purple-600"
               onClick={function () {
                 if (
                   questions[currentQuestionIndex].correctAns == choosenOption
