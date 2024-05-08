@@ -369,7 +369,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
       <div>
         <div className="space-y-6 ">
           <ul className="space-y-4">
-            <div className="hover:border-purple-600 hover:border-4">
+            <div className="">
               <ListItem
                 index={1}
                 lable={"A"}
@@ -378,7 +378,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
                 changeOption={changeOption}
               />
             </div>
-            <div className="hover:border-purple-600 hover:border-4">
+            <div className="">
               <ListItem
                 index={2}
                 lable={"B"}
@@ -387,7 +387,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
                 changeOption={changeOption}
               />
             </div>
-            <div className="hover:border-purple-600 hover:border-4">
+            <div className="">
               <ListItem
                 index={3}
                 lable={"C"}
@@ -396,7 +396,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
                 changeOption={changeOption}
               />
             </div>
-            <div className="hover:border-purple-600 hover:border-4">
+            <div className="">
               <ListItem
                 index={4}
                 lable={"D"}
