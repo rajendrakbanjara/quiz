@@ -1,4 +1,5 @@
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import ListItem from "./ListItem";
 interface ChildProps {
   showResult: (marks: number) => void;
@@ -348,11 +349,14 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
   var changeOption = (option: number) => {
     setChoosenOption(option);
   };
-
+  var per = 5;
+  useEffect(() => {
+    require("bootstrap/dist/js/bootstrap.js");
+  }, []);
   return (
-    <div className="flex mt-20 justify-between ">
+    <div className="flex mt-20 justify-between">
       {/* left container */}
-      <div className="pr-14">
+      <div className="flex flex-col justify-between w-[32rem]">
         <div className="mr-20">
           <p className="text-lg italic text-slate-600 dark:text-slate-400 font-sans mb-5">
             Question {currentQuestionIndex + 1} of {questions.length}
@@ -361,8 +365,20 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
             {questions[currentQuestionIndex].qution}
           </p>
         </div>
-        <div>
-          <input type="range" />
+        <div className="progressiveBar mb-6">
+          <div
+            className="progress"
+            role="progressbar"
+            aria-label="Info example"
+            aria-valuenow={1}
+            aria-valuemin={1}
+            aria-valuemax={10} // Ensure this is a number
+          >
+            <div
+              className="progress-bar bg-purple-600"
+              style={{ width: `${currentQuestionIndex + 1}0%` }}
+            ></div>
+          </div>
         </div>
       </div>
       {/* Right container */}
@@ -409,7 +425,7 @@ const Question: React.FC<ChildProps> = ({ showResult, subject }) => {
           <div>
             <button
               type="submit"
-              className="flex items-center font-bold text-white p-2 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
+              className="flex items-center font-bold text-white p-4 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
               onClick={function () {
                 if (
                   questions[currentQuestionIndex].correctAns == choosenOption

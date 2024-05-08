@@ -10,16 +10,15 @@ const Result: React.FC<ChildProps> = ({chooseSubject, marks})=> {
       {/* left container */}
       <div className="pr-14">
         <div className="mr-20">
-          <p className="text-lg italic text-slate-400 font-sans mb-5">
-            Question 6 of 10
+          {/* <p className="text-lg italic text-slate-400 font-sans mb-5">
+           
+          </p> */}
+          <p className="dark:text-white text-slate-600 font-sans font-thin text-7xl">
+            Quiz Completed
           </p>
-          <p className="dark:text-white text-slate-600 font-semibold text-4xl">
-            Which of these color contrast ratios defines the minimum WACAG 2.1
-            Level AA requirement for normal text?
+          <p className="dark:text-white text-slate-600 font-sans font-semibold text-6xl">
+            You Scored...
           </p>
-        </div>
-        <div>
-          <input type="range" />
         </div>
       </div>
       {/* Right container */}
@@ -48,7 +47,7 @@ const Result: React.FC<ChildProps> = ({chooseSubject, marks})=> {
           <div>
             <button
               type="submit"
-              className="flex items-center font-bold text-white p-2 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
+              className="flex items-center font-bold text-white p-4 w-[36rem] rounded-2xl text-2xl justify-center py-7 bg-purple-600"
               onClick={()=>chooseSubject(0)}
             >
               Play again
